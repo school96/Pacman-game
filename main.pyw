@@ -4,7 +4,7 @@ import scenes # Import scene classes
 pygame.init()
 
 # Prepare screen
-screen = pygame.display.set_mode((800, 800))
+screen = pygame.display.set_mode((800, 820))
 pygame.display.set_caption("PacMan")
 
 # Sets active scene to the titlescreen
@@ -16,7 +16,7 @@ while not done:
     # Setup clock
     clock = pygame.time.Clock()
 
-    # Event loop to close the window when user clickes close
+    # Event loop to close the window when user clicks close
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True

@@ -1,5 +1,7 @@
 import pygame
 
+BLUE = (5, 105, 255)
+
 class PacMan(pygame.sprite.Sprite):
 
     def __init__(self):
@@ -53,3 +55,27 @@ class PacMan(pygame.sprite.Sprite):
             else:
                 self.loaded = 8
         self.image.blit(pygame.transform.scale(self.spriteviews[self.loaded - 1], (20, 20)), (0, 0))
+
+
+class Barrier(pygame.sprite.Sprite):
+
+    def __init__(self, x, y, width, height):
+
+        super().__init__()
+        self.image = pygame.Surface([width, height])
+        self.image.fill(BLUE)
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+
+
+class Dot(pygame.sprite.Sprite):
+
+    def __init__(self, x, y):
+
+        super().__init__()
+        self.image = pygame.Surface([10, 10])
+        self.image.fill((255, 255, 255))
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
