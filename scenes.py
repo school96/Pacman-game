@@ -68,9 +68,43 @@ class GameScene():
         self.pgs = pygame.sprite.Group()
         self.player = sprites.PacMan()
         self.pgs.add(self.player)
+        self.altclock = 0
+        self.pacsound = pygame.mixer.Sound("pacman_sound.ogg")
+        self.gamesound = pygame.mixer.Sound("game_over_sound.ogg")
 
     def HandleEvents(self):
-        pass
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_d]:
+            if self.player.dir != "e":
+                self.player.redir("e")
+                self.altclock = 0
+            self.player.rect.x += 1.5
+        if keys[pygame.K_a]:
+            if self.player.dir != "w":
+                self.player.redir("w")
+                self.altclock = 0
+            self.player.rect.x -= 1
+        if keys[pygame.K_w]:
+            if self.player.dir != "n":
+                self.player.redir("n")
+                self.altclock = 0
+            self.player.rect.y -= 1
+        if keys[pygame.K_s]:
+            if self.player.dir != "s":
+                self.player.redir("s")
+                self.altclock = 0
+            self.player.rect.y += 1.5
+        if keys[pygame.K_ESCAPE]:
+            self.gamesound.play()
+            self.changeto = "TitleScreen()"
+            self.changescene = True
+        
+        if self.altclock != 8:
+            self.altclock += 1
+        else:
+            self.altclock = 0
+            self.player.alternate()
+            self.pacsound.play()
 
     def RenderScreen(self, screen):
         screen.fill(BLACK)
