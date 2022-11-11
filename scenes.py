@@ -1,4 +1,5 @@
 import pygame
+import sprites
 from time import sleep
 
 BLACK = (0, 0, 0)
@@ -14,9 +15,11 @@ class TitleScreen():
         self.active = 1
         self.changescene = False
         self.changeto = None
+        self.pacmanswitch = 0
         self.image1 = pygame.image.load("pacman3.png")
         self.image2 = pygame.image.load("pacmanghost4.png")
         self.image3 = pygame.image.load("pacman4.png")
+        self.apacimg = 1
 
     # Pygame event handler
     def HandleEvents(self):
@@ -44,16 +47,33 @@ class TitleScreen():
             screen.blit(self.font1.render("Quit", True, YELLOW, None), (10, 50))
         else:
             screen.blit(self.font1.render("Quit", True, WHITE, None), (10, 50))
-        screen.blit(pygame.transform.scale(self.image1, (154.5, 142.5)), (100, 300))
-        screen.blit
+        if self.pacmanswitch != 10:
+            if self.apacimg == 1:
+                screen.blit(pygame.transform.scale(self.image1, (618 / 4, 570 / 4)), (100, 300))
+            else:
+                screen.blit(pygame.transform.scale(self.image3, (618 / 4, 570 / 4)), (100, 300))
+            self.pacmanswitch += 1
+        else:
+            self.pacmanswitch = 0
+            if self.apacimg == 1:
+                self.apacimg = 2
+            else:
+                self.apacimg = 1
+        screen.blit(pygame.transform.scale(self.image2, (684 / 6, 915 / 6)), (500, 300))
 
 class GameScene():
     def __init__(self):
         self.changescene = False
         self.changeto = None
+        self.pgs = pygame.sprite.Group()
+        self.player = sprites.PacMan()
+        self.pgs.add(self.player)
 
     def HandleEvents(self):
         pass
 
     def RenderScreen(self, screen):
-        screen.fill(WHITE)
+        screen.fill(BLACK)
+
+        self.pgs.update()
+        self.pgs.draw(screen)
