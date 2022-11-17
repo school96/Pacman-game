@@ -88,6 +88,10 @@ class GameScene():
         self.bgs.add(sprites.Barrier(20, 400, 20, 340))
         self.bgs.add(sprites.Barrier(760, 60, 20, 320))
         self.bgs.add(sprites.Barrier(760, 400, 20, 340))
+        self.bgs.add(sprites.Barrier(60, 60, 680, 20))
+        self.bgs.add(sprites.Barrier(60, 720, 680, 20))
+        self.bgs.add(sprites.Barrier(60, 80, 20, 300))
+        self.bgs.add(sprites.Barrier(60, 400, 20, 320))
 
 
         self.sx = 20

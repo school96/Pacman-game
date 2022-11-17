@@ -32,7 +32,7 @@ while not done:
         else:
             exec("activescene = scenes." + str(activescene.changeto))
 
-    # Shows the user the nearly drawn frame
+    # Shows the user the already drawn frame
     pygame.display.flip()
 
     # Limit framerate to 30fps
